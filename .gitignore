@@ -1,0 +1,8 @@
+/.gradle
+/.idea
+.idea
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**
+!**/src/test/**
