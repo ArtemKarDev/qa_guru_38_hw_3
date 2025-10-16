@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.files.DownloadActions.click;
 
 public class PracticeFormTests {
     @BeforeAll
@@ -27,21 +28,16 @@ public class PracticeFormTests {
 
         // Date
         $("#dateOfBirthInput").click();
-        $(".react-datepicker__year-select").click();
-        $("[value='2010']").click();
-        // это для того что бы в списке появилась "2000" при следующем клике
-        $(".react-datepicker__year-select").click();
-        $("[value='2000']").click();
-        $(".react-datepicker__month-select").click();
-        $("[value='5']").click();
-        $("[aria-label='Choose Monday, June 12th, 2000']").click();
+        $(".react-datepicker__month-select").$(byText("May")).click();
+        $(".react-datepicker__year-select").$(byText("1990")).click();
+        $(".react-datepicker__month").$(byText("10")).click();
+
 
         // Subject
-        $("input#subjectsInput").setValue("co");
-        $(byText("Computer Science")).click();
+        $("input#subjectsInput").setValue("co").pressEnter();
 
         // Hobbies
-        $("[for=hobbies-checkbox-3]").click();
+        $("#hobbiesWrapper").$(byText("Music")).click();
 
         //loading pict
 
@@ -53,24 +49,24 @@ public class PracticeFormTests {
         //State
         $("#state").scrollTo();
         $("#state").click();
-        $(byText("NCR")).click();
+        $("#react-select-3-input").setValue("NCR").pressEnter();
 
         //City
         $("#city").click();
-        $(byText("Noida")).click();
+        $("#react-select-4-input").setValue("Noida").pressEnter();
 
         $("#submit").click();
 
-        $$("tr").get(1).shouldHave(text("Jimmy Recard"));
-        $$("tr").get(2).shouldHave(text("JimmyRecard@good.boy"));
-        $$("tr").get(3).shouldHave(text("Male"));
-        $$("tr").get(4).shouldHave(text("9997775533"));
-        $$("tr").get(5).shouldHave(text("12 June,2000"));
-        $$("tr").get(6).shouldHave(text("Computer Science"));
-        $$("tr").get(7).shouldHave(text("Music"));
-        $$("tr").get(8).shouldHave(text("pict.jpg"));
-        $$("tr").get(9).shouldHave(text("Some street 1"));
-        $$("tr").get(10).shouldHave(text("NCR Noida"));
+        $(".table-responsive").shouldHave(text("Jimmy Recard"));
+        $(".table-responsive").shouldHave(text("JimmyRecard@good.boy"));
+        $(".table-responsive").shouldHave(text("Male"));
+        $(".table-responsive").shouldHave(text("9997775533"));
+        $(".table-responsive").shouldHave(text("12 June,2000"));
+        $(".table-responsive").shouldHave(text("Computer Science"));
+        $(".table-responsive").shouldHave(text("Music"));
+        $(".table-responsive").shouldHave(text("pict.jpg"));
+        $(".table-responsive").shouldHave(text("Some street 1"));
+        $(".table-responsive").shouldHave(text("NCR Noida"));
 
     }
 
