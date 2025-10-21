@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.files.DownloadActions.click;
 
 public class PracticeFormTests {
     @BeforeAll
@@ -41,7 +40,7 @@ public class PracticeFormTests {
 
         //loading pict
 
-        $("#uploadPicture").uploadFromClasspath("pict.jpg");
+        $("#uploadPicture").uploadFromClasspath("pict/pict1.jpg");
 
         //Address
         $("#currentAddress").setValue("Some street 1");
@@ -64,7 +63,7 @@ public class PracticeFormTests {
         $(".table-responsive").shouldHave(text("12 June,2000"));
         $(".table-responsive").shouldHave(text("Computer Science"));
         $(".table-responsive").shouldHave(text("Music"));
-        $(".table-responsive").shouldHave(text("pict.jpg"));
+        $(".table-responsive").shouldHave(text("pict/pict1.jpg"));
         $(".table-responsive").shouldHave(text("Some street 1"));
         $(".table-responsive").shouldHave(text("NCR Noida"));
 

@@ -2,6 +2,8 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import components.CalendarComponent;
+import components.AdbDisabler;
+
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -28,9 +30,13 @@ public class RegistrationPage {
 
     public RegistrationPage openPage(){
         open("/automation-practice-form");
+        AdbDisabler.disableBanners();
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
-        //executeJavaScript("$('#fixedban').remove()");
-       // executeJavaScript("$('footer').remove()");
+        return this;
+    }
+
+    public RegistrationPage disableAds(){
+        AdbDisabler.disableBanners();
         return this;
     }
 
