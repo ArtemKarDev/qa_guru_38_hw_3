@@ -46,7 +46,7 @@ public class GeneratorTestData {
     }
 
     public String[] generateDate() {
-        int year = faker.number().numberBetween(1990, 2010);
+        int year = faker.number().numberBetween(1999, 2010);
         int monthInt =  faker.number().numberBetween(1, 12);
         String month = Month.of(monthInt).getDisplayName(java.time.format.TextStyle.FULL, Locale.ENGLISH);
         int maxDays = java.time.Month.of(monthInt)

@@ -1,0 +1,38 @@
+[
+  {
+    "firstName": "Alexod",
+    "lastName": "Egorov",
+    "email": "alex@maslo.com",
+    "gender": "Male",
+    "phoneNumber": "9991112233",
+    "dateOfBirth": {
+      "day": "19",
+      "month": "January",
+      "year": "1999"
+    },
+    "subjects": ["Maths"],
+    "hobbies": ["Reading", "Music"],
+    "picture": "pict/pict1.jpg",
+    "address": "Moscow",
+    "state": "NCR",
+    "city": "Delhi"
+  },
+  {
+    "firstName": "Felix",
+    "lastName": "Babah",
+    "email": "felbah@milo.com",
+    "gender": "Male",
+    "phoneNumber": "9661116633",
+    "dateOfBirth": {
+      "day": "11",
+      "month": "June",
+      "year": "2000"
+    },
+    "subjects": ["Maths"],
+    "hobbies": ["Sports", "Music"],
+    "picture": "pict/pict2.jpg",
+    "address": "Moscow",
+    "state": "NCR",
+    "city": "Delhi"
+  }
+]

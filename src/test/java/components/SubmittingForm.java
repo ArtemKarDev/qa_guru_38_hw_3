@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 
 public class SubmittingForm {
 
@@ -30,10 +31,25 @@ public class SubmittingForm {
         return this;
     }
 
+    public boolean isFormOpen(){
+        return modalFormHeader.isDisplayed();
+    }
+    public boolean isFormNotOpen(){
+        return !modalFormHeader.isDisplayed();
+    }
+
+
+    public String getValue(String fieldName){
+        return $x("//td[text()='" + fieldName + "']/following-sibling::td").getText();
+    }
+
     public SubmittingForm closeForm() {
         closeButton.click();
         header.shouldHave(text("Practice Form"));
         return this;
     }
+
+
+
 
 }

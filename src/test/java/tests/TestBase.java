@@ -2,19 +2,23 @@ package tests;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 
 public class TestBase {
 
     @BeforeAll
     static void beforeAll(){
+        Configuration.browser = "chrome";
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x1080";
         Configuration.pageLoadStrategy = "eager";
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--start-maximized");
+        Configuration.browserCapabilities = options;
 
         //прошу не обращять внимания на этот закомментированный код
-        Configuration.browser = "chrome";
-        Configuration.holdBrowserOpen = true;
+        Configuration.browserSize = "1920x1080";
+        Configuration.holdBrowserOpen = false;
         //Configuration.timeout = 1000;
     }
 }

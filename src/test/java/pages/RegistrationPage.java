@@ -60,7 +60,7 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setUserNumber(String value) {
+    public RegistrationPage setNumber(String value) {
         userNumberInput.setValue(value);
         return this;
     }
@@ -80,7 +80,7 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage uploadPictures(String path){
+    public RegistrationPage setPictures(String path){
         loaderPictures.uploadFromClasspath(path);
         return this;
     }
