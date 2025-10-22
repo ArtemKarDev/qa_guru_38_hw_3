@@ -13,7 +13,7 @@ import static com.codeborne.selenide.Condition.visible;
 
 public class RegistrationPage {
 
-    private SelenideElement firstNameInput = $("#firstName"),
+    private final SelenideElement firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             userEmailInput = $("#userEmail"),
             genderWrapper = $("#genterWrapper"),
@@ -112,11 +112,5 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage checkResult(String key, String value){
-        $(".table-responsive")
-                .$(byText(key)).parent()
-                .shouldHave(text(value));
-        return this;
-    }
 
 }
