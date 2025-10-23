@@ -1,12 +1,14 @@
 package tests;
 
 import TestData.GeneratorTestData;
+import TestData.Hobby;
 import TestData.RegistrationData;
 import components.SubmittingForm;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.EnumSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import pages.RegistrationPage;
@@ -186,7 +188,30 @@ public class RegistrationWhitPageObjectsTests extends TestBase {
                 .closeForm();
     }
 
+    @ParameterizedTest
+    @EnumSource(TestData.Hobby.class)
+    public void fillMinimalFormRegistrationHobbiesTest(Hobby hobbies){
+        registrationPage.openPage()
+                .setFirstName(testData.firstName)
+                .setLastName(testData.lastName)
+                .setEmail(testData.email)
+                .setGender(testData.gender)
+                .setNumber(testData.phoneNumber)
+                .setHobbies(hobbies.getDisplayName())
+                .pressSubmit()
+                .checkSubmitting();
 
+        SoftAssertions soft = new SoftAssertions();
+
+        soft.assertThat(submittingForm.getValue("Hobbies"))
+                .as("Hobbies")
+                .isEqualTo(hobbies.getDisplayName());
+
+        soft.assertAll();
+
+        submittingForm.closeForm();
+
+    }
 
 
 }
