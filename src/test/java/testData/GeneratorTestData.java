@@ -1,4 +1,4 @@
-package TestData;
+package testData;
 
 import com.github.javafaker.Faker;
 import java.time.Month;
@@ -6,20 +6,8 @@ import java.util.*;
 
 public class GeneratorTestData {
 
-    Faker faker = new Faker();
+    static Faker faker = new Faker();
     public String[] generatedDate = generateDate();
-
-    private static final Map<String, List<String>> STATE_TO_CITIES = new HashMap<>();
-
-    static {
-        STATE_TO_CITIES.put("NCR", Arrays.asList("Delhi", "Gurgaon", "Noida"));
-        STATE_TO_CITIES.put("Uttar Pradesh", Arrays.asList("Agra", "Lucknow", "Merrut"));
-        STATE_TO_CITIES.put("Rajasthan", Arrays.asList("Jaipur", "Jaiselmer"));
-        STATE_TO_CITIES.put("Haryana", Arrays.asList("Karnal", "Panipat"));
-    }
-
-    public Map<String, String> stateCity = generatorStateCities();
-
 
     public String
                     firstName = faker.name().firstName(),
@@ -34,8 +22,8 @@ public class GeneratorTestData {
                     day = generatedDate[0],
                     month = generatedDate[1],
                     year = generatedDate[2],
-                    state = stateCity.get("state"),
-                    city = stateCity.get("city");
+                    state = getRandomState(),
+                    city = selectCity(state);
 
 
     public String randomString(int length){
@@ -57,14 +45,19 @@ public class GeneratorTestData {
         };
     }
 
-    public Map<String, String> generatorStateCities(){
-        List<String> states = new ArrayList<>(STATE_TO_CITIES.keySet());
-        String state = states.get(faker.number().numberBetween(0, states.size()));
 
-        List<String> cities = STATE_TO_CITIES.get(state);
-        String city = cities.get(faker.number().numberBetween(0, cities.size()));
+    public static String getRandomState() {
+        return faker.options().option("NCR", "Uttar Pradesh", "Haryana", "Rajasthan");
+    }
+    public static String selectCity(String state) {
+        return switch (state) {
 
-        return Map.of("state",state,"city",city);
+            case "NCR" -> faker.options().option("Delhi", "Gurgaon", "Noida");
+            case "Uttar Pradesh" -> faker.options().option("Agra", "Lucknow", "Merrut");
+            case "Haryana" -> faker.options().option("Karnal", "Panipat");
+            case "Rajasthan" -> faker.options().option("Jaipur", "Jaiselmer");
+            default -> null;
+        };
     }
 
 }

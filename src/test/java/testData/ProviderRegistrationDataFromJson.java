@@ -1,4 +1,4 @@
-package TestData;
+package testData;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.params.provider.Arguments;

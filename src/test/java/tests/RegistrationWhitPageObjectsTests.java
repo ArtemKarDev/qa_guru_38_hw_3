@@ -1,8 +1,8 @@
 package tests;
 
-import TestData.GeneratorTestData;
-import TestData.Hobby;
-import TestData.RegistrationData;
+import testData.GeneratorTestData;
+import testData.Hobby;
+import testData.RegistrationData;
 import components.SubmittingForm;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Test;
@@ -189,7 +189,7 @@ public class RegistrationWhitPageObjectsTests extends TestBase {
     }
 
     @ParameterizedTest
-    @EnumSource(TestData.Hobby.class)
+    @EnumSource(testData.Hobby.class)
     public void fillMinimalFormRegistrationHobbiesTest(Hobby hobbies){
         registrationPage.openPage()
                 .setFirstName(testData.firstName)

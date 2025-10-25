@@ -1,4 +1,4 @@
-package TestData;
+package testData;
 
 public enum Hobby {
         SPORTS("Sports"),

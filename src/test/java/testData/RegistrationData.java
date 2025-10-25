@@ -1,4 +1,4 @@
-package TestData;
+package testData;
 
 import lombok.Builder;
 import lombok.Data;
