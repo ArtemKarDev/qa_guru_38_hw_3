@@ -1,5 +1,7 @@
 package tests;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import testData.GeneratorTestData;
 import testData.Hobby;
 import testData.RegistrationData;
@@ -20,8 +22,85 @@ public class RegistrationWhitPageObjectsTests extends TestBase {
     SubmittingForm submittingForm= new SubmittingForm();
     GeneratorTestData testData = new GeneratorTestData();
 
+
     @ParameterizedTest(name = "{0} - full data")
-    @MethodSource("TestData.ProviderRegistrationDataFromJson#registrationData")
+    @DisplayName("Проверка c данными через CsvFileSource")
+    @CsvFileSource(resources = "/registration-data2.csv", numLinesToSkip = 1)
+    public void fullRegistrationTestdataFromCSV(String firstName, String lastName, String email,
+                                                String gender, String number,String day, String month,
+                                                String year, String subjects, String hobbies,
+                                                String picture, String address, String state, String city) {
+        registrationPage.openPage()
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setEmail(email)
+                .setGender(gender)
+                .setNumber(number)
+                .setDateOfBirth(day, month, year)
+                .setSubject(subjects)
+                .setHobbies(hobbies)
+                .setPictures(picture)
+                .setAddress(address)
+                .setState(state)
+                .setCity(city)
+                .pressSubmit();
+
+        SoftAssertions soft = new SoftAssertions();
+
+        soft.assertThat(submittingForm.isFormOpen())
+                .as("Форма открыта")
+                .isTrue();
+
+        soft.assertThat(submittingForm.getValue("Student Name"))
+                .as("Student Name")
+                .isEqualTo(firstName + " " + lastName);
+
+        soft.assertThat(submittingForm.getValue("Student Email"))
+                .as("Student Email")
+                .isEqualTo(email);
+
+        soft.assertThat(submittingForm.getValue("Gender"))
+                .as("Gender")
+                .isEqualTo(gender);
+
+        soft.assertThat(submittingForm.getValue("Mobile"))
+                .as("Mobile")
+                .isEqualTo(number);
+
+        soft.assertThat(submittingForm.getValue("Date of Birth"))
+                .as("Date of Birth")
+                .isEqualTo(day + " " +
+                        month + "," + year);
+
+        soft.assertThat(submittingForm.getValue("Subjects"))
+                .as("Subjects")
+                .isEqualTo(subjects);
+
+        soft.assertThat(submittingForm.getValue("Hobbies"))
+                .as("Hobbies")
+                .isEqualTo(hobbies);
+
+        soft.assertThat(picture)
+                .as("Picture")
+                .contains(submittingForm.getValue("Picture"));
+
+        soft.assertThat(submittingForm.getValue("Address"))
+                .as("Address")
+                .isEqualTo(address);
+
+        soft.assertThat(submittingForm.getValue("State and City"))
+                .as("State and City")
+                .isEqualTo(state + " " + city);
+
+        soft.assertAll();
+
+        submittingForm.closeForm();
+    }
+
+
+
+        @ParameterizedTest(name = "{0} - full data")
+    @MethodSource("testData.ProviderRegistrationDataFromJson#registrationData")
     public void fullRegistrationTest(String caseName, RegistrationData data) {
         registrationPage.openPage()
                 .setFirstName(data.getFirstName())
@@ -133,6 +212,8 @@ public class RegistrationWhitPageObjectsTests extends TestBase {
 
         submittingForm.closeForm();
     }
+
+
 
     @Test
     public void successfulRegistrationTestWithGenData(){

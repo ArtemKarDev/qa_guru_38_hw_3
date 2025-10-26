@@ -1,4 +1,4 @@
-firstName,lastName,gender,number
-Alex,Egorov,Other,1234567890
-Evgen,Avakumov,Female,1234567890
-Salpuk,Heruvim,Male,1111112222
+firstName,lastName,email,gender,number,day,month,year,subjects,hobbies,picture,address,state,city,
+Alex,Egorov,alex@maslo.com,Other,6345634560,19,January,1999,Maths,Sports,pict/pict1.jpg,Moscow,NCR,Delhi
+Evgen,Avakumov,felbah@milo.com,Female,1234567890,11,June,2000,Maths,Music,pict/pict2.jpg,Moscow,NCR,Delhi
+Salpuk,Heruvim,yelerh@fghj.com,Male,1111112222,19,January,1999,Maths,Reading,pict/pict1.jpg,Moscow,NCR,Delhi
